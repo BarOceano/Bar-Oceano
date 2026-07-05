@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- ============================================================
+       BAR OCÉANO — Carta Digital
+       Versión: 1.0 | Mobile-First | Bootstrap 5
+  ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>Bar Océano — Carta Digital | Sabores del mar y de la tierra</title>
+  <meta name="description" content="Carta digital del Bar Océano. Para compartir, delicias de mar, ensaladas, carnes, bocadillos, hamburguesas, pizzas y postres caseros. Sabores del mar y de la tierra." />
+  <meta name="keywords" content="bar oceano, carta, menú, desayunos, tapas, raciones, mariscos, restaurante" />
+  <meta name="author" content="Bar Océano" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bar Océano — Carta Digital" />
+  <meta property="og:description" content="Sabores del mar y de la tierra. Descubre nuestra carta." />
+  <meta property="og:type" content="restaurant.menu" />
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIABLES Y TOKENS
+    ============================================================ */
+    :root {
+      --ocean-deep:    #0A2540;
+      --ocean-mid:     #0E6BA8;
+      --ocean-bright:  #00B4D8;
+      --ocean-light:   #90E0EF;
+      --ocean-pale:    #CAF0F8;
+      --coral:         #FF6B35;
+      --gold:          #F4A261;
+      --white-pearl:   #F8FAFC;
+      --gray-soft:     #E8EDF2;
+      --text-dark:     #0D1B2A;
+      --text-mid:      #3D5A73;
+      --text-light:    #6B8FA8;
+
+      --font-display:  'Playfair Display', Georgia, serif;
+      --font-body:     'Inter', system-ui, sans-serif;
+
+      --radius-card:   14px;
+      --shadow-card:   0 2px 16px rgba(10,37,64,.10);
+      --shadow-hover:  0 8px 32px rgba(10,37,64,.18);
+      --transition:    0.28s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ============================================================
+       BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white-pearl);
+      color: var(--text-dark);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+    }
+
+    /* ============================================================
+       CABECERA / HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 2rem 1.5rem 5rem;
+    }
+
+    /* Fondo degradado oceánico animado */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 20%, rgba(0,180,216,.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 70% 70%, rgba(14,107,168,.3) 0%, transparent 55%),
+        linear-gradient(160deg, #0A2540 0%, #0E3A5C 40%, #0E6BA8 100%);
+      animation: heroShift 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroShift {
+      0%   { filter: hue-rotate(0deg)   brightness(1);    }
+      100% { filter: hue-rotate(12deg)  brightness(1.06); }
+    }
+
+    /* Olas SVG en el fondo del hero */
+    .hero-waves {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-icon {
+      font-size: 4rem;
+      color: var(--ocean-light);
+      animation: float 4s ease-in-out infinite;
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0);    }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .hero-brand {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 10vw, 5rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .04em;
+      line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+
+    .hero-brand span {
+      color: var(--ocean-bright);
+    }
+
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: clamp(.95rem, 3.5vw, 1.2rem);
+      font-weight: 300;
+      color: var(--ocean-pale);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-top: .6rem;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--ocean-bright);
+      margin: 1.2rem auto;
+      border-radius: 2px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(8px);
+      color: var(--ocean-pale);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 3.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      color: var(--ocean-light);
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      opacity: .75;
+    }
+
+    .scroll-arrow {
+      font-size: 1.3rem;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0);   }
+      50%       { transform: translateY(6px); }
+    }
+
+    /* ============================================================
+       NAVEGACIÓN STICKY DE SECCIONES
+    ============================================================ */
+    .section-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--ocean-deep);
+      box-shadow: 0 2px 12px rgba(10,37,64,.25);
+      padding: .5rem 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .section-nav::-webkit-scrollbar { display: none; }
+
+    .section-nav .nav {
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      padding: 0 .75rem;
+      gap: .25rem;
+    }
+
+    .section-nav .nav-link {
+      color: var(--ocean-light);
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .4rem .85rem;
+      border-radius: 100px;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .section-nav .nav-link:hover,
+    .section-nav .nav-link.active {
+      background: var(--ocean-bright);
+      color: var(--ocean-deep);
+      border-color: var(--ocean-bright);
+    }
+
+    /* ============================================================
+       SECCIONES PRINCIPALES
+    ============================================================ */
+    .carta-section {
+      padding: 2.5rem 0 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--ocean-deep);
+      margin-bottom: .3rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: .88rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+
+    .section-icon {
+      font-size: 1.6rem;
+      color: var(--ocean-bright);
+      margin-right: .5rem;
+      vertical-align: -.15em;
+    }
+
+    .section-separator {
+      height: 3px;
+      background: linear-gradient(90deg, var(--ocean-bright), transparent);
+      border-radius: 3px;
+      margin-bottom: 1.6rem;
+    }
+
+    /* ============================================================
+       TARJETAS DE PRODUCTO
+    ============================================================ */
+    .item-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(10,37,64,.06);
+      padding: .95rem 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: .7rem;
+    }
+
+    .item-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--ocean-bright);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .item-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+      border-color: rgba(0,180,216,.18);
+    }
+
+    .item-card:hover::before { opacity: 1; }
+
+    .item-info { flex: 1; min-width: 0; }
+
+    .item-name {
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: .95rem;
+      line-height: 1.3;
+      margin-bottom: .18rem;
+    }
+
+    .item-desc {
+      color: var(--text-light);
+      font-size: .8rem;
+      line-height: 1.4;
+    }
+
+    .item-price {
+      font-family: var(--font-display);
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--ocean-mid);
+      white-space: nowrap;
+      padding-top: .05rem;
+    }
+
+    /* ============================================================
+       ETIQUETAS / BADGES
+    ============================================================ */
+    .badge-rec   { background: #FFF3CD; color: #8a6200; }
+    .badge-hot   { background: #FFE8E0; color: #c44d1a; }
+    .badge-new   { background: #E0F7FA; color: #00697a; }
+
+    .item-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      font-size: .68rem;
+      font-weight: 600;
+      padding: .15rem .5rem;
+      border-radius: 100px;
+      margin-right: .3rem;
+      margin-bottom: .3rem;
+    }
+
+    /* ============================================================
+       ACORDEÓN PERSONALIZADO
+    ============================================================ */
+    .custom-accordion .accordion-item {
+      border: 1px solid rgba(10,37,64,.08);
+      border-radius: var(--radius-card) !important;
+      margin-bottom: .7rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .custom-accordion .accordion-button {
+      font-family: var(--font-body);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--ocean-deep);
+      background: #fff;
+      padding: 1rem 1.2rem;
+      gap: .6rem;
+    }
+
+    .custom-accordion .accordion-button:not(.collapsed) {
+      background: linear-gradient(90deg, rgba(0,180,216,.08), transparent);
+      color: var(--ocean-mid);
+      box-shadow: none;
+    }
+
+    .custom-accordion .accordion-button::after {
+      filter: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%230E6BA8' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    }
+
+    .custom-accordion .accordion-body {
+      padding: .5rem .9rem 1rem;
+      background: #fff;
+    }
+
+    .acc-icon {
+      font-size: 1.15rem;
+      color: var(--ocean-bright);
+    }
+
+    /* ============================================================
+       ESPECIALIDADES DE LA CASA
+    ============================================================ */
+    .specialty-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(10,37,64,.07);
+      padding: 1.2rem 1.1rem;
+      transition: var(--transition);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .specialty-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--ocean-bright), var(--ocean-mid));
+    }
+
+    .specialty-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .specialty-emoji {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+      display: block;
+    }
+
+    .specialty-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ocean-deep);
+      margin-bottom: .3rem;
+    }
+
+    .specialty-desc {
+      font-size: .8rem;
+      color: var(--text-light);
+      line-height: 1.45;
+      margin-bottom: .8rem;
+    }
+
+    .specialty-price {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ocean-mid);
+    }
+
+    /* ============================================================
+       BEBIDAS GRID
+    ============================================================ */
+    .bebida-pill {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(10,37,64,.07);
+      padding: .85rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      transition: var(--transition);
+      height: 100%;
+    }
+
+    .bebida-pill:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(0,180,216,.2);
+      transform: translateY(-2px);
+    }
+
+    .bebida-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .bebida-name {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--text-dark);
+      margin-bottom: .1rem;
+    }
+
+    .bebida-detail {
+      font-size: .75rem;
+      color: var(--text-light);
+    }
+
+    .bebida-price {
+      margin-left: auto;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--ocean-mid);
+      font-size: 1rem;
+    }
+
+    /* ============================================================
+       SECCIÓN ESPECIALIDADES BG
+    ============================================================ */
+    .bg-ocean-section {
+      background: linear-gradient(180deg, #EBF8FD 0%, var(--white-pearl) 100%);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--ocean-deep);
+      color: var(--ocean-pale);
+      padding: 2.5rem 0 1.5rem;
+    }
+
+    footer h5 {
+      font-family: var(--font-display);
+      color: #fff;
+      font-size: 1.05rem;
+      margin-bottom: .9rem;
+    }
+
+    footer p, footer a {
+      font-size: .85rem;
+      color: var(--ocean-light);
+      text-decoration: none;
+      line-height: 2;
+    }
+
+    footer a:hover { color: var(--ocean-bright); }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .05em;
+    }
+
+    .footer-brand span { color: var(--ocean-bright); }
+
+    .footer-divider {
+      border-color: rgba(255,255,255,.1);
+      margin: 1.5rem 0 1rem;
+    }
+
+    .footer-copy {
+      font-size: .77rem;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      color: var(--ocean-light);
+      font-size: 1rem;
+      transition: var(--transition);
+      text-decoration: none;
+      margin-right: .4rem;
+    }
+
+    .social-btn:hover {
+      background: var(--ocean-bright);
+      color: var(--ocean-deep);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       BOTÓN VOLVER ARRIBA
+    ============================================================ */
+    #btnTop {
+      position: fixed;
+      bottom: 1.4rem;
+      right: 1.2rem;
+      z-index: 999;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--ocean-mid);
+      color: #fff;
+      border: none;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(10,37,64,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+      pointer-events: none;
+    }
+
+    #btnTop.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #btnTop:hover {
+      background: var(--ocean-bright);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* ============================================================
+       UTILIDADES
+    ============================================================ */
+    .text-ocean { color: var(--ocean-mid); }
+    .text-coral { color: var(--coral); }
+    .bg-ocean-pale { background: var(--ocean-pale); }
+    .fw-500 { font-weight: 500; }
+
+    /* ============================================================
+       ANIMACIONES DE ENTRADA
+    ============================================================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       RESPONSIVE TWEAKS
+    ============================================================ */
+    @media (max-width: 575px) {
+      .section-title { font-size: 1.5rem; }
+      .item-price     { font-size: 1rem; }
+    }
+
+    /* Reducir movimiento si el usuario lo prefiere */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     CABECERA / HERO
+============================================================ -->
+<header class="hero" id="inicio">
+  <div class="hero-bg"></div>
+
+  <!-- Olas SVG decorativas -->
+  <svg class="hero-waves" viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,90 L0,90 Z"
+          fill="#F8FAFC" opacity="1"/>
+    <path d="M0,75 C360,40 720,90 1080,50 C1260,30 1380,70 1440,75 L1440,90 L0,90 Z"
+          fill="#F8FAFC" opacity=".5"/>
+  </svg>
+
+  <div class="hero-content">
+    <span class="hero-badge">
+      <i class="bi bi-anchor-fill"></i> Tu mesa, nuestra casa
+    </span>
+    <i class="bi bi-water hero-icon"></i>
+    <h1 class="hero-brand">BAR <span>OCÉANO</span></h1>
+    <p class="hero-tagline">Sabores del mar y de la tierra</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Ver carta</span>
+    <i class="bi bi-chevron-down scroll-arrow"></i>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     NAVEGACIÓN STICKY
+============================================================ -->
+<nav class="section-nav" id="carta-nav">
+  <ul class="nav justify-content-start">
+    <li class="nav-item"><a class="nav-link" href="#desayunos">☕ Desayunos</a></li>
+    <li class="nav-item"><a class="nav-link" href="#compartir">🍳 Para Compartir</a></li>
+    <li class="nav-item"><a class="nav-link" href="#mar">🐟 Delicias de Mar</a></li>
+    <li class="nav-item"><a class="nav-link" href="#ensaladas">🥗 Ensaladas</a></li>
+    <li class="nav-item"><a class="nav-link" href="#carnes">🥩 Carnes</a></li>
+    <li class="nav-item"><a class="nav-link" href="#sandwiches">🥪 Sándwiches</a></li>
+    <li class="nav-item"><a class="nav-link" href="#bocadillos">🥖 Bocadillos</a></li>
+    <li class="nav-item"><a class="nav-link" href="#hamburguesas">🍔 Hamburguesas</a></li>
+    <li class="nav-item"><a class="nav-link" href="#combinados">🍽️ Combinados</a></li>
+    <li class="nav-item"><a class="nav-link" href="#postres">🍰 Postres</a></li>
+    <li class="nav-item"><a class="nav-link" href="#helados">🍦 Helados</a></li>
+  </ul>
+</nav>
+
+<main class="container" style="max-width:680px;">
+
+  <!-- ============================================================
+       DESAYUNOS
+  ============================================================ -->
+  <section class="carta-section fade-up" id="desayunos">
+    <h2 class="section-title">☕ Desayunos</h2>
+    <p class="section-subtitle">Hasta las 12:00 h · Sin cargo por servicio de terraza</p>
+    <div class="section-separator"></div>
+
+    <div class="accordion custom-accordion" id="accDesayunos">
+
+      <!-- TOSTAS XXL -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tostasxxl">
+            <i class="bi bi-egg-fried acc-icon"></i> Tostas XXL
+          </button>
+        </h2>
+        <div id="tostasxxl" class="accordion-collapse collapse show" data-bs-parent="#accDesayunos">
+          <div class="accordion-body">
+
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">1 · Aguacate, kebab, salsa yogur, pimentón y AOVE</div>
+              </div>
+              <div class="item-price">8,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">2 · Huevos revueltos, aguacate, tomate, pimentón y AOVE</div>
+              </div>
+              <div class="item-price">7,60€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">3 · Jamón, aguacate y tomate</div>
+              </div>
+              <div class="item-price">9,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">4 · Jamón, aguacate, tomate y huevo</div>
+              </div>
+              <div class="item-price">9,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">5 · Tomate, aguacate, bacon y revuelto</div>
+              </div>
+              <div class="item-price">8,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">6 · Salmón, tomate, aguacate y Philadelphia</div>
+              </div>
+              <div class="item-price">8,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">7 · Salmón y Philadelphia</div>
+              </div>
+              <div class="item-price">7,90€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">8 · Philadelphia, alioli y gulas</div>
+              </div>
+              <div class="item-price">7,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">9 · Aguacate, tomate, huevo, pimentón y AOVE</div>
+              </div>
+              <div class="item-price">7,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">10 · Alioli, bacon, tortilla francesa, cebolla crujiente, tomate y queso</div>
+              </div>
+              <div class="item-price">8,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">11 · Tomate, bacon y queso</div>
+              </div>
+              <div class="item-price">4,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">12 · Bacon, queso y huevo</div>
+              </div>
+              <div class="item-price">5,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">13 · Parisina</div>
+                <div class="item-desc">Jamón york y queso</div>
+              </div>
+              <div class="item-price">5,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">14 · Parisina con Huevo</div>
+                <div class="item-desc">York, queso y huevo</div>
+              </div>
+              <div class="item-price">5,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">15 · Atún, tomate, queso y huevo cocido</div>
+              </div>
+              <div class="item-price">6,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">16 · Tomate y tortilla francesa</div>
+              </div>
+              <div class="item-price">5,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">17 · Tomate, jamón, queso y huevo frito</div>
+              </div>
+              <div class="item-price">5,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">18 · Tomate, jamón y AOVE</div>
+              </div>
+              <div class="item-price">5,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">19 · Paté Iberitos</div>
+              </div>
+              <div class="item-price">3,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">20 · Mantequilla y Mermelada</div>
+              </div>
+              <div class="item-price">3,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">21 · Tomate y Aceite</div>
+              </div>
+              <div class="item-price">3,50€</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- BOLLERÍA -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bolleria">
+            <i class="bi bi-brightness-high acc-icon"></i> Bollería y Dulces
+          </button>
+        </h2>
+        <div id="bolleria" class="accordion-collapse collapse" data-bs-parent="#accDesayunos">
+          <div class="accordion-body">
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Donut</div>
+                <div class="item-desc">Azúcar o chocolate</div>
+              </div>
+              <div class="item-price">1,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Croissant</div>
+              </div>
+              <div class="item-price">2,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Napolitana</div>
+                <div class="item-desc">Chocolate o crema</div>
+              </div>
+              <div class="item-price">2,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Croissant Mixto</div>
+                <div class="item-desc">Jamón york y queso</div>
+              </div>
+              <div class="item-price">3,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Napolitana Mixta</div>
+                <div class="item-desc">Jamón york y queso</div>
+              </div>
+              <div class="item-price">3,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Rejilla de Espinacas</div>
+              </div>
+              <div class="item-price">3,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Pepito de Crema</div>
+              </div>
+              <div class="item-price">2,50€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Palmera de Chocolate</div>
+              </div>
+              <div class="item-price">2,50€</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAFÉS Y BEBIDAS -->
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cafes">
+            <i class="bi bi-cup-hot-fill acc-icon"></i> Cafés y Bebidas
+          </button>
+        </h2>
+        <div id="cafes" class="accordion-collapse collapse" data-bs-parent="#accDesayunos">
+          <div class="accordion-body">
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Vica</div>
+                <div class="item-desc">Exprés, italiano</div>
+              </div>
+              <div class="item-price">1,70€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Solo</div>
+              </div>
+              <div class="item-price">1,70€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Solo Doble</div>
+              </div>
+              <div class="item-price">2,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Americano</div>
+                <div class="item-desc">Agua cafetera</div>
+              </div>
+              <div class="item-price">1,70€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Carajillo</div>
+                <div class="item-desc">Baileys</div>
+              </div>
+              <div class="item-price">2,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Cortado</div>
+                <div class="item-desc">Poca leche</div>
+              </div>
+              <div class="item-price">1,70€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Con Leche</div>
+              </div>
+              <div class="item-price">1,70€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Manchado</div>
+                <div class="item-desc">Poco café</div>
+              </div>
+              <div class="item-price">1,70€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Bombón</div>
+                <div class="item-desc">Leche condensada</div>
+              </div>
+              <div class="item-price">2,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Descafeinado de Sobre</div>
+              </div>
+              <div class="item-price">1,70€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Colacao</div>
+              </div>
+              <div class="item-price">2,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Nesquik</div>
+              </div>
+              <div class="item-price">2,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Infusiones</div>
+              </div>
+              <div class="item-price">1,70€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Zumo de Naranja Natural</div>
+                <div class="item-desc">Tubo</div>
+              </div>
+              <div class="item-price">3,00€</div>
+            </div>
+            <div class="item-card">
+              <div class="item-info">
+                <div class="item-name">Zumos y Batidos</div>
+              </div>
+              <div class="item-price">2,50€</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /accordion desayunos -->
+  </section>
+
+
+  <!-- ============================================================
+       PARA COMPARTIR
+  ============================================================ -->
+  <section class="carta-section fade-up" id="compartir">
+    <h2 class="section-title">🍳 Para Compartir</h2>
+    <p class="section-subtitle">Ideal para picar entre todos</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Magro en Salsa con Pimientos y Papas</div>
+      </div>
+      <div class="item-price">11,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Orejas a la Plancha</div>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Patatas al Rebujón</div>
+      </div>
+      <div class="item-price">10,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Fingers de Pollo KFC con Patatas</div>
+      </div>
+      <div class="item-price">8,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Croquetas Caseras de Jamón</div>
+        <div class="item-desc">8 unidades</div>
+        <span class="item-badge badge-rec">⭐ Recomendado</span>
+
+      </div>
+      <div class="item-price">11,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Camembert Frito con Mermelada</div>
+      </div>
+      <div class="item-price">10,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Tempura de Verduras</div>
+      </div>
+      <div class="item-price">10,00€</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DELICIAS DE MAR
+  ============================================================ -->
+  <section class="carta-section fade-up" id="mar">
+    <h2 class="section-title">🐟 Delicias de Mar</h2>
+    <p class="section-subtitle">Lo mejor del mar, a tu mesa</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Boquerones en Tempura</div>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Mejillones al Vapor</div>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Revuelto de Gambas, Ajetes y Trigueros</div>
+      </div>
+      <div class="item-price">11,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Gambas al Ajillo</div>
+        <span class="item-badge badge-rec">⭐ Recomendado</span>
+      </div>
+      <div class="item-price">11,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Puntillitas</div>
+      </div>
+      <div class="item-price">11,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Calamares a la Andaluza</div>
+        <span class="item-badge badge-hot">🔥 Más vendido</span>
+      </div>
+      <div class="item-price">11,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Rejos</div>
+      </div>
+      <div class="item-price">10,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Fritura de Pescado Variado</div>
+      </div>
+      <div class="item-price">15,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Sepia</div>
+      </div>
+      <div class="item-price">16,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Pata de Pulpo</div>
+        <span class="item-badge badge-rec">⭐ Recomendado</span>
+      </div>
+      <div class="item-price">18,00€</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ENSALADAS
+  ============================================================ -->
+  <section class="carta-section fade-up" id="ensaladas">
+    <h2 class="section-title">🥗 Ensaladas</h2>
+    <p class="section-subtitle">Frescura en cada bocado</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Ensalada Mixta</div>
+        <div class="item-desc">Lechuga, tomate, cebolla, atún y huevo</div>
+      </div>
+      <div class="item-price">10,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Ensalada Oceánica</div>
+        <div class="item-desc">Lechuga, tomate, atún, delicias de mar, gambas y salsa rosa</div>
+        <span class="item-badge badge-hot">🔥 Más vendido</span>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Ensalada de la Casa</div>
+        <div class="item-desc">Lechuga, canónigos, tomate, jamón york, queso fresco y salsa de módena</div>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Ensalada de Rulo</div>
+        <div class="item-desc">Lechuga, tomate, rulo de cabra, nueces y mermelada</div>
+        <span class="item-badge badge-rec">⭐ Recomendado</span>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Ensalada César</div>
+        <div class="item-desc">Lechuga, tomate, picatostes, pollo empanado y salsa César</div>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CARNES
+  ============================================================ -->
+  <section class="carta-section fade-up" id="carnes">
+    <h2 class="section-title">🥩 Carnes</h2>
+    <p class="section-subtitle">A la plancha, en su punto</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Secreto</div>
+        <div class="item-desc">Con patatas o ensalada</div>
+      </div>
+      <div class="item-price">14,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Solomillo</div>
+        <div class="item-desc">Con patatas o ensalada</div>
+        <span class="item-badge badge-rec">⭐ Recomendado</span>
+      </div>
+      <div class="item-price">16,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Presa</div>
+        <div class="item-desc">Con patatas o ensalada</div>
+      </div>
+      <div class="item-price">15,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Carpaccio de Buey con Parmesano</div>
+      </div>
+      <div class="item-price">14,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Lagarto</div>
+        <div class="item-desc">Con ensalada o patatas</div>
+      </div>
+      <div class="item-price">15,00€</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SÁNDWICHES
+  ============================================================ -->
+  <section class="carta-section fade-up" id="sandwiches">
+    <h2 class="section-title">🥪 Sándwiches</h2>
+    <p class="section-subtitle">Rápidos y sabrosos</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Mixto</div>
+        <div class="item-desc">York y queso</div>
+      </div>
+      <div class="item-price">4,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Vegetal</div>
+        <div class="item-desc">Lechuga, tomate, atún y huevo</div>
+      </div>
+      <div class="item-price">6,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Sándwich Cubanito</div>
+        <div class="item-desc">Jamón york, queso, huevo y bacon</div>
+        <span class="item-badge badge-hot">🔥 Más vendido</span>
+      </div>
+      <div class="item-price">5,50€</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOCADILLOS
+  ============================================================ -->
+  <section class="carta-section fade-up" id="bocadillos">
+    <h2 class="section-title">🥖 Bocadillos</h2>
+    <p class="section-subtitle">De toda la vida</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Bacon Queso</div>
+      </div>
+      <div class="item-price">7,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Lomo Queso</div>
+      </div>
+      <div class="item-price">7,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Pechuga de Pollo</div>
+      </div>
+      <div class="item-price">7,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Tortilla Francesa</div>
+      </div>
+      <div class="item-price">6,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Calamares con Alioli</div>
+        <span class="item-badge badge-rec">⭐ Recomendado</span>
+      </div>
+      <div class="item-price">7,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Pepito de Ternera</div>
+        <span class="item-badge badge-hot">🔥 Más vendido</span>
+      </div>
+      <div class="item-price">9,00€</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HAMBURGUESAS
+  ============================================================ -->
+  <section class="carta-section fade-up" id="hamburguesas">
+    <h2 class="section-title">🍔 Hamburguesas</h2>
+    <p class="section-subtitle">Jugosas y caseras</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Simple</div>
+        <div class="item-desc">Carne, queso, lechuga y tomate</div>
+      </div>
+      <div class="item-price">7,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Crispy</div>
+        <div class="item-desc">Queso, tomate, lechuga, cebolla y huevo</div>
+      </div>
+      <div class="item-price">8,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Especial</div>
+        <div class="item-desc">Lechuga, tomate, bacon, queso, huevo frito y cebolla</div>
+        <span class="item-badge badge-hot">🔥 Más vendido</span>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Angus</div>
+        <div class="item-desc">Lechuga, tomate, cebolla, bacon, queso y huevo</div>
+        <span class="item-badge badge-rec">⭐ Recomendado</span>
+      </div>
+      <div class="item-price">15,00€</div>
+    </div>
+
+    <!-- Pizzas y Paninis en tarjetas destacadas -->
+    <div class="row g-3 mt-3">
+      <div class="col-6">
+        <div class="specialty-card">
+          <span class="specialty-emoji">🍕</span>
+          <div class="specialty-name">Pizzas</div>
+          <div class="specialty-desc">York y queso · Barbacoa · Bacon · Atún</div>
+          <div class="specialty-price">11,00€</div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="specialty-card">
+          <span class="specialty-emoji">🥪</span>
+          <div class="specialty-name">Paninis</div>
+          <div class="specialty-desc">York y queso · Barbacoa · Bacon · Atún</div>
+          <div class="specialty-price">7,50€</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PLATOS COMBINADOS
+  ============================================================ -->
+  <section class="carta-section fade-up" id="combinados">
+    <h2 class="section-title">🍽️ Platos Combinados</h2>
+    <p class="section-subtitle">Todos incluyen patatas o ensalada</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Pollo</div>
+        <div class="item-desc">2 huevos, pollo</div>
+      </div>
+      <div class="item-price">11,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Ternera</div>
+        <div class="item-desc">2 huevos, ternera</div>
+        <span class="item-badge badge-rec">⭐ Recomendado</span>
+      </div>
+      <div class="item-price">11,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Bacon</div>
+        <div class="item-desc">2 huevos, bacon</div>
+      </div>
+      <div class="item-price">8,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Calamares</div>
+        <div class="item-desc">2 huevos, calamares</div>
+        <span class="item-badge badge-hot">🔥 Más vendido</span>
+      </div>
+      <div class="item-price">12,00€</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POSTRES CASEROS
+  ============================================================ -->
+  <section class="carta-section fade-up" id="postres">
+    <h2 class="section-title">🍰 Postres Caseros</h2>
+    <p class="section-subtitle">El broche dulce a tu comida</p>
+    <div class="section-separator"></div>
+
+    <div class="row g-3">
+      <div class="col-4">
+        <div class="specialty-card text-center">
+          <span class="specialty-emoji">🍰</span>
+          <div class="specialty-name" style="font-size:.92rem;">Tarta de la Abuela</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="specialty-card text-center">
+          <span class="specialty-emoji">🍮</span>
+          <div class="specialty-name" style="font-size:.92rem;">Natillas</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="specialty-card text-center">
+          <span class="specialty-emoji">🍚</span>
+          <div class="specialty-name" style="font-size:.92rem;">Arroz con Leche</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-card mt-3">
+      <div class="item-info">
+        <div class="item-name">Cualquier postre casero</div>
+        <div class="item-desc">A elegir entre las opciones de arriba</div>
+      </div>
+      <div class="item-price">6,50€</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TARRINAS DE HELADO PREMIUM
+  ============================================================ -->
+  <section class="carta-section fade-up" id="helados">
+    <h2 class="section-title">🍦 Helados</h2>
+    <p class="section-subtitle">Creaciones heladas, una experiencia distinta</p>
+    <div class="section-separator"></div>
+
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Dama Mandarina</div>
+        <div class="item-desc">Helado de crema de mandarina con núcleo de chocolate</div>
+      </div>
+      <div class="item-price">5,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Torreón de Piña</div>
+        <div class="item-desc">Helado de crema de piña con sirope de piña</div>
+      </div>
+      <div class="item-price">5,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Supreme Turrón</div>
+        <div class="item-desc">Helado de crema de turrón con Jijona y núcleo de chocolate</div>
+      </div>
+      <div class="item-price">4,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Supreme Tiramisú</div>
+        <div class="item-desc">Helado de crema de tiramisú</div>
+      </div>
+      <div class="item-price">4,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Supreme Choco Brownie</div>
+        <div class="item-desc">Helado de crema de chocolate con mermelada de naranja y bizcocho de brownie</div>
+      </div>
+      <div class="item-price">4,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Supreme Tres Chocolates</div>
+        <div class="item-desc">Helado de crema de chocolate negro y blanco, cubierto con una rejilla de chocolate</div>
+      </div>
+      <div class="item-price">4,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Fantasía Panacota</div>
+        <div class="item-desc">Helado de crema de panacota cubierta con crema de fresa</div>
+      </div>
+      <div class="item-price">5,00€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Deliss Latte</div>
+        <div class="item-desc">Helado de crema de leche merengada, cubierto con una rejilla de chocolate con leche</div>
+      </div>
+      <div class="item-price">4,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Deliss Galleta de Cacao</div>
+        <div class="item-desc">Helado crema elaborado con galleta de oreo, cubierto con una rejilla de chocolate</div>
+      </div>
+      <div class="item-price">4,50€</div>
+    </div>
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-name">Dubai Pistacho</div>
+        <div class="item-desc">Helado de crema de chocolate cubierto con una rejilla de pistacho</div>
+      </div>
+      <div class="item-price">5,00€</div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       AVISOS: SUPLEMENTOS, ALÉRGENOS Y PAGO
+  ============================================================ -->
+  <section class="carta-section fade-up pb-2">
+    <div class="row g-3">
+      <div class="col-12 col-sm-6">
+        <div class="p-3 h-100" style="background:rgba(0,180,216,.08);border-left:3px solid var(--ocean-bright);border-radius:8px;font-size:.82rem;color:var(--text-mid);">
+          <strong style="color:var(--ocean-deep);"><i class="bi bi-receipt me-1"></i>Suplementos</strong><br/>
+          Extras y pan sin gluten · 1€<br/>
+          Mollete · +0,50€
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="p-3 h-100" style="background:#FFF8F0;border-left:3px solid var(--coral);border-radius:8px;font-size:.82rem;color:var(--text-mid);">
+          <strong style="color:var(--ocean-deep);"><i class="bi bi-phone-fill me-1"></i>Se aceptan pagos con Bizum</strong><br/>
+          628 67 69 54
+        </div>
+      </div>
+    </div>
+    <div class="mt-3 p-3" style="background:var(--gray-soft);border-radius:8px;font-size:.78rem;color:var(--text-mid);">
+      <i class="bi bi-info-circle-fill me-1" style="color:var(--ocean-mid);"></i>
+      Consulte a nuestro personal sobre alérgenos: gluten, leche, huevo, pescado, crustáceos, moluscos, soja, mostaza, sésamo, sulfitos, cacahuetes, frutos de cáscara, altramuces y apio.
+    </div>
+  </section>
+
+</main><!-- /container -->
+<footer>
+  <div class="container" style="max-width:680px;">
+    <div class="row g-4">
+
+      <!-- Marca -->
+      <div class="col-12">
+        <div class="footer-brand">BAR <span>OCÉANO</span></div>
+        <p class="mt-1" style="font-size:.82rem;color:var(--ocean-light);">
+          Sabores del mar y de la tierra
+        </p>
+        <div class="mt-2">
+          <a href="#" class="social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Contacto -->
+      <div class="col-6">
+        <h5>Dónde encontrarnos</h5>
+        <p>
+          <i class="bi bi-geo-alt-fill me-1" style="color:var(--ocean-bright);"></i>
+          C. Jacinto Benavente<br/>
+          <span style="padding-left:1.2rem;">10300 Navalmoral de la Mata</span>
+        </p>
+        <p>
+          <i class="bi bi-telephone-fill me-1" style="color:var(--ocean-bright);"></i>
+          <a href="tel:+34628676954">628 67 69 54</a>
+        </p>
+      </div>
+
+      <!-- Horario -->
+      <div class="col-6">
+        <h5>Horario</h5>
+        <p>
+          <i class="bi bi-clock-fill me-1" style="color:var(--ocean-bright);"></i>
+          Lun – Vie<br/>
+          <span style="padding-left:1.2rem;">7:30 – 00:00</span>
+        </p>
+        <p>
+          <i class="bi bi-clock-fill me-1" style="color:var(--ocean-bright);"></i>
+          Sáb – Dom<br/>
+          <span style="padding-left:1.2rem;">8:00 – 01:00</span>
+        </p>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="footer-copy">
+      © 2025 Bar Océano · Todos los derechos reservados ·
+      <a href="#" style="color:var(--text-light);">Política de privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Botón volver arriba -->
+<button id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  /* ============================================================
+     BOTÓN VOLVER ARRIBA
+  ============================================================ */
+  const btnTop = document.getElementById('btnTop');
+  window.addEventListener('scroll', () => {
+    btnTop.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+
+  /* ============================================================
+     ANIMACIONES DE ENTRADA (Intersection Observer)
+  ============================================================ */
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  /* ============================================================
+     NAV ACTIVA AL SCROLL
+  ============================================================ */
+  const navLinks = document.querySelectorAll('.section-nav .nav-link');
+  const sections = ['desayunos','compartir','mar','ensaladas','carnes','sandwiches','bocadillos','hamburguesas','combinados','postres','helados']
+    .map(id => document.getElementById(id));
+
+  function updateNav() {
+    let current = '';
+    sections.forEach(sec => {
+      if (sec && window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+</script>
+
+</body>
+</html>
